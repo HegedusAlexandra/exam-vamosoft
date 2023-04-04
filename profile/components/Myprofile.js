@@ -1,5 +1,5 @@
 import { Text, View, TextInput, Image, Pressable } from "react-native";
-
+import Svg, { Circle, Rect } from "react-native-svg";
 import { Stack, IconButton } from "@react-native-material/core";
 
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -9,7 +9,7 @@ import { CONTINENT_QUERY } from "../gql/Query";
 
 export default function Myprofile({ navigation }) {
   const textInputStyle = tw`h-10 w-84 p-3 rounded-md border border-blue-100`;
-  const textLabelStyle = tw`text-blue-500 mt-2 font-bold font-sans text-xl`;
+  const textLabelStyle = tw`text-blue-500 mt-5 mb-1 font-bold text-lg`;
   const { data, loading } = useQuery(CONTINENT_QUERY);
 
   if (loading) {
@@ -21,16 +21,19 @@ export default function Myprofile({ navigation }) {
   return (
     <View style={tw` w-full h-full`}>
       <View
-        style={tw`flex-row w-full h-10/40 bg-blue-600 items-center justify-start`}
+        style={tw`flex-row w-full h-18/80 bg-[#006EE9] items-center justify-center`}
       >
-        <IconButton
-          icon={(props) => <Icon name="arrow-left-box" {...props} />}
-          onPress={() => navigation.navigate("Landing")}
-          color="white"
-          size="large"
-        />
+        <View
+          style={tw`absolute left-4 w-10 h-10 bg-white rounded-lg items-center justify-center`}
+        >
+          <IconButton
+            icon={(props) => <Icon name="arrow-left" {...props} />}
+            onPress={() => navigation.navigate("Landing")}
+            color="#006EE9"
+          />
+        </View>
         <Text
-          style={tw`text-md text-white dark:text-white m-22 font-black font-sans text-lg tracking-wide`}
+          style={tw`text-md text-white dark:text-white font-bold text-lg tracking-wide`}
         >
           My Profile
         </Text>
@@ -43,8 +46,16 @@ export default function Myprofile({ navigation }) {
             source={require("../example.jpg")}
             style={tw`w-24 h-24 rounded-full `}
           ></Image>
+          <View
+            style={tw`absolute right-0 bottom-2 w-8 h-8 bg-white rounded-lg items-center justify-center border-2 border-blue-500`}
+          >
+            <IconButton
+              icon={(props) => <Icon name="pencil" {...props} />}
+              color="#006EE9"
+            />
+          </View>
         </View>
-        <View style={tw`m-3`}>
+        <View style={tw`m-4`}>
           <Text style={textLabelStyle}>Name</Text>
           <TextInput style={textInputStyle} value={data.user.name} />
           <Text style={textLabelStyle}>Profession</Text>
@@ -60,9 +71,9 @@ export default function Myprofile({ navigation }) {
           <TextInput style={textInputStyle} value={data.user.email} />
           <Pressable
             title="Save"
-            style={tw`w-84 h-20 flex-row bg-blue-500 items-center mt-10 `}
+            style={tw`h-10 w-84 bg-blue-500 items-center justify-center mt-16 rounded-md `}
           >
-            <Text style={tw`text-white`}>Save</Text>
+            <Text style={tw`text-white font-bold text-lg`}>Save</Text>
           </Pressable>
         </View>
       </View>
