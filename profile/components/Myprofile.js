@@ -6,7 +6,6 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useQuery } from "@apollo/client";
 import { CONTINENT_QUERY } from "../gql/Query";
 
-console.log(Icon);
 export default function Myprofile({ navigation }) {
   const textInputStyle =
     "h-11 w-11/12 p-2 bg-white shadow-sm shadow-blue-500/50 rounded-xl border border-blue-50 ";
@@ -52,14 +51,23 @@ export default function Myprofile({ navigation }) {
         <Text className={textLabelStyle}>Profession</Text>
         <TextInput className={textInputStyle} value={data.user.profession} />
         <Text className={textLabelStyle}>Date of Birth</Text>
-        <TextInput
-          className={textInputStyle}
-          value={new Intl.DateTimeFormat("en-US").format(
-            Date.parse(data.user.dateOfBirth)
-          )}
-        />
+        <View
+          className={textInputStyle + "flex-row items-center justify-start"}
+        >
+          <Icon name="calendar-blank" size={18} color="#006EE9" />
+          <TextInput
+            className="ml-3"
+            value={new Intl.DateTimeFormat("en-US", {
+              month: "short",
+              year: "numeric",
+              day: "numeric",
+            }).format(Date.parse(data.user.dateOfBirth))}
+          />
+        </View>
+
         <Text className={textLabelStyle}>Email</Text>
         <TextInput className={textInputStyle} value={data.user.email} />
+
         <Pressable
           title="Save"
           className="h-11 w-11/12 bg-blue-500 items-center justify-center mt-14 rounded-xl"
