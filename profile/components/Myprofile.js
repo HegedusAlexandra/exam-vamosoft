@@ -37,9 +37,9 @@ export default function Myprofile({ navigation }) {
         <View className="h-1/6 flex-row items-start justify-center">
           <Image
             source={require("../example.jpg")}
-            className="w-20 h-20 rounded-full"
+            className="ml-6 w-20 h-20 rounded-full"
           ></Image>
-          <View className="absolute bottom-5 right-2 w-6 h-6 bg-white rounded-md items-center justify-center border-2 border-blue-500">
+          <View className="relative -bottom-[15%] right-6 w-6 h-6 bg-white rounded-md items-center justify-center border-2 border-blue-500">
             <IconButton
               icon={<Icon name="pencil" size={14} color="#006EE9" />}
               color="#006EE9"
